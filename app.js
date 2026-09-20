@@ -21,6 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 const indexRoutes = require('./routes/index');
 app.use('/', indexRoutes);
 
+
 app.listen(PORT, () => {
   console.log(`Campus Eats running at http://localhost:${PORT}`);
 });
