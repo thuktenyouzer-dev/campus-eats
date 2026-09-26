@@ -1,27 +1,18 @@
-# campus-eats/
-├── config/                    (data layer support — DB connection, next lab)
+campus-eats/
+├── config/
+│   └── db.js
 ├── controllers/
-│   ├── homeController.js      (Controller — home + restaurants)
-│   ├── aboutController.js     (Controller)
-│   ├── menuController.js      (Controller)
-│   └── orderController.js     (Controller — createOrder, DB insert coming next lab)
-├── models/                    (Model — empty for now, Order.js arrives next lab)
+│   ├── homeController.js      (Controller — pages)
+│   ├── aboutController.js
+│   ├── menuController.js
+│   ├── orderController.js
+│   └── apiController.js       (Controller — JSON API, new)
+├── models/
+│   ├── Restaurant.js          (unchanged — reused by both Controllers)
+│   ├── MenuItem.js            (unchanged — reused by both Controllers)
+│   └── Order.js               (unchanged — reused by both Controllers)
 ├── routes/
-│   └── index.js               (Routing — /, /about, /menu, POST /orders)
+│   ├── index.js               (Routing — page routes)
+│   └── api.js                 (Routing — /api/* JSON routes, new)
 ├── views/
-│   ├── partials/
-│   │   ├── header.ejs         (View)
-│   │   └── footer.ejs         (View)
-│   ├── index.ejs              (View — hero + restaurants)
-│   ├── about.ejs              (View)
-│   ├── menu.ejs               (View — order forms)
-│   └── order_confirmation.ejs (View)
 ├── public/
-│   ├── css/
-│   │   └── styles.css
-│   └── js/
-├── app.js
-├── .env
-├── .gitignore
-├── nodemon.json
-└── package.json
