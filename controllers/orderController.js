@@ -7,7 +7,7 @@ exports.createOrder = async (req, res) => {
   if (!item) {
     return res.status(400).send('Invalid menu item.');
   }
-  const order = await Order.createOrder(item.id, item.price);
+  const order = await Order.createOrder(item.id, item.price, req.session.user.id);
   res.redirect(`/orders/${order.id}`);
 };
 

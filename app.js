@@ -16,16 +16,32 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Parse form data
 app.use(express.urlencoded({ extended: true }));
+
 app.use(express.json());
+
+const session = require('express-session');
+
+app.use(session({
+  secret: process.env.SESSION_SECRET || 'campus-eats-dev-secret',
+  resave: false,
+  saveUninitialized: false,
+}));
+
+// Make the logged-in user available to every view, without passing it manually every time
+app.use((req, res, next) => {
+  res.locals.user = req.session.user || null;
+  next();
+});
+
 // Routes
 const indexRoutes = require('./routes/index');
 app.use('/', indexRoutes);
+
+const apiRoutes = require('./routes/api');
+app.use('/api', apiRoutes);
 
 
 app.listen(PORT, () => {
   console.log(`Campus Eats running at http://localhost:${PORT}`);
 });
-const apiRoutes = require('./routes/api');
-app.use('/api', apiRoutes);
-
 
