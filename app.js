@@ -9,6 +9,10 @@ connectMongo().catch(err => console.error('MongoDB connection failed:', err));
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+if (process.env.NODE_ENV !== 'test') {
+  connectMongo().catch(err => console.error('MongoDB connection failed:', err));
+}
+
 
 // View engine
 app.set('view engine', 'ejs');
@@ -51,6 +55,4 @@ app.get('/db-test', async (req, res) => {
     }
 });
 
-app.listen(PORT, () => {
-    console.log(`Campus Eats running at http://localhost:${PORT}`);
-});
+module.exports = app;
